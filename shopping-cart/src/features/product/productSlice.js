@@ -4,6 +4,8 @@ export const productSlice = createSlice({
   name: "product",
   initialState: {
     value: 0,
+    products: [],
+    cart: [],
   },
   reducers: {
     increment: (state) => {
@@ -19,10 +21,22 @@ export const productSlice = createSlice({
     incrementByAmount: (state, action) => {
       state.value += action.payload;
     },
+    setProducts: (state, action) => {
+      state.products = action.payload;
+    },
+    addToCart: (state, action) => {
+      state.cart.push(action.payload);
+    },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = productSlice.actions;
+export const {
+  increment,
+  decrement,
+  incrementByAmount,
+  setProducts,
+  addToCart,
+} = productSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -34,12 +48,24 @@ export const incrementAsync = (amount) => (dispatch) => {
   }, 1000);
 };
 
+export const getProducts = () => (dispatch) => {
+  fetch("http://localhost:3001/products")
+    .then((r) => r.json())
+    .then((data) => {
+      // console.log(data)
+      dispatch(setProducts(data));
+      console.log(data);
+    });
+};
+
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.product.value)`
 export const selectCount = (state) => {
-  console.log(state.product);
+  // console.log(state.product);
   return state.product.value;
 };
 
+export const selectProducts = (state) => state.product.products;
+export const selectCart = (state) => state.product.cart;
 export default productSlice.reducer;

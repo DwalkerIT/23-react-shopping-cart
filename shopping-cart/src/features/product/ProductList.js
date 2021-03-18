@@ -1,23 +1,33 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Product from './Product'
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Product from "./Product";
 import {
-  decrement,
-  increment,
-  incrementByAmount,
-  incrementAsync,
+  getProducts,
   selectCount,
-} from './productSlice';
-import styles from './Product.module.css';
+  selectProducts,
+  //   decrement,
+  //   increment,
+  //   incrementByAmount,
+  //   incrementAsync,
+} from "./productSlice";
+import styles from "./Product.module.css";
 
 export function ProductList() {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
-  const [incrementAmount, setIncrementAmount] = useState('2');
+  const products = useSelector(selectProducts);
+  //   const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+  console.log(products);
   return (
-    <div>
-      <Product />
+    <div className="product-grid">
+      {products.map((product) => (
+        <Product product={product} />
+      ))}
+      {/* <Product product={product}/> */}
     </div>
   );
 }
