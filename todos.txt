@@ -1,0 +1,19 @@
+GET a list of products
+
+add to the cart 
+delete from cart
+increase quantity
+decrease quantity
+
+Components
+
+productList
+product 
+
+cart 
+cartItem
+
+slice:
+
+products: [product, product]
+cart: [productWithQuantity]
