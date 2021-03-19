@@ -26,7 +26,9 @@ export const productSlice = createSlice({
     },
     addToCart: (state, action) => {
       const currentProduct = action.payload;
-      const index = state.cart.findIndex(product => product.id === incomingProduct.id);
+      const index = state.cart.findIndex(
+        (product) => product.id === currentProduct.id
+      );
       const productInCart = index !== -1;
       if (productInCart) {
         state.cart[index].quantity++;
@@ -34,37 +36,40 @@ export const productSlice = createSlice({
         const productToBeAdded = { ...currentProduct, quantity: 1 };
         state.cart.push(productToBeAdded);
       }
-      //   const incomingProduct = { ...action.payload, quantity: 1 };
-      //   const isInCart = state.cart.push(
+      // const incomingProduct = { ...action.payload, quantity: 1 };
+      // const isInCart = state.cart.push(
+      //   (product) => product.id === incomingProduct.id
+      // );
+      // if (!isInCart) {
+      //   state.cart.push(incomingProduct);
+      // } else {
+      //   const cartIndex = state.cart.findIndex(
       //     (product) => product.id === incomingProduct.id
       //   );
-      //   if (!isInCart) {
-      //     state.cart.push(incomingProduct);
-      //   } else {
-      //     const cartIndex = state.cart.findIndex(
-      //       (product) => product.id === incomingProduct.id
-      //     );
-      //     const currentProduct = state.cart[cartIndex];
-      //     currentProduct.quantity++;
-      //   }
-      //   console.log(isInCart);
+      //   const currentProduct = state.cart[cartIndex];
+      //   currentProduct.quantity++;
+      // }
+      // console.log(isInCart);
 
-      //   state.cart.push(action.payload);
+      // state.cart.push(action.payload);
     },
     removeFromCart: (state, action) => {
       const productId = action.payload;
       state.cart = state.cart.filter((product) => product.id !== productId);
     },
     incrementQuantity: (state, action) => {
-      const index = state.cart.findIndex((p) => product.id !== productId);
+      const productId = action.payload;
+      const index = state.cart.findIndex((product) => product.id !== productId);
     },
     decrementQuantity: (state, action) => {
-      const index = state.cart.findIndex((p) => p.id === action.payload);
+      const index = state.cart.findIndex(
+        (product) => product.id === action.payload
+      );
       state.cart[index].quantity--;
     },
-    toggleFilter: (state) => {
-      const incomingState = action.payload;
-    },
+    // toggleFilter: (state) => {
+    //   const incomingState = action.payload;
+    // },
   },
 });
 
