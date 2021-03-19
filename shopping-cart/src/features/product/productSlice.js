@@ -26,12 +26,12 @@ export const productSlice = createSlice({
     },
     addToCart: (state, action) => {
       const currentProduct = action.payload;
-      const index = state.cart.findIndex(
+      const productInCart = state.cart.find(
         (product) => product.id === currentProduct.id
       );
-      const productInCart = index !== -1;
+      // const productInCart = index !== -1;
       if (productInCart) {
-        state.cart[index].quantity++;
+        productInCart.quantity++;
       } else {
         const productToBeAdded = { ...currentProduct, quantity: 1 };
         state.cart.push(productToBeAdded);
@@ -97,7 +97,7 @@ export const getProducts = () => (dispatch) => {
     .then((data) => {
       // console.log(data)
       dispatch(setProducts(data));
-      console.log(data);
+      // console.log(data);
     });
 };
 

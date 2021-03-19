@@ -1,14 +1,15 @@
-import React from "react";
-import cartItem from "./cartItem";
+import React, { useEffect } from "react";
+import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
 import { selectCart } from "./productSlice";
 
 export default function Cart() {
   const cart = useSelector(selectCart);
+
   return (
     <div id="mySidenav" class="sidenav">
-      {cart.map((cartItem) => {
-        return <cartItem product={cartItem} />;
+      {cart.map((item) => {
+        return <CartItem key={item.id} product={item} />;
       })}
       {/* <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="#">About</a>

@@ -21,11 +21,11 @@ export function ProductList() {
   useEffect(() => {
     dispatch(getProducts());
   }, []);
-  console.log(products);
+  // console.log(products);
   return (
     <div className="product-grid">
       {products.map((product) => (
-        <Product product={product} />
+        <Product key={product.id} product={product} />
       ))}
       {/* <Product product={product}/> */}
     </div>

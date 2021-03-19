@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import {addToCart} from './productSlice'
+import { addToCart } from "./productSlice";
 
 export default function Product({ product }) {
-    const dispatch = useDispatch();
-    function formatPrice(price) {
+  const dispatch = useDispatch();
+  function formatPrice(price) {
     return price.toFixed(2);
   }
   return (

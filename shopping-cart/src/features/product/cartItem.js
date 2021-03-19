@@ -1,20 +1,20 @@
 import React from "react";
-export default function cartItem(props) {
+export default function CartItem({ product }) {
   return (
-    <div className="cart-item">
+    <div className="cart-item" key={product.id}>
       <div>
-        <img src={props.product.img.thumb} alt={props.product.title} />
+        <img src={product.img.thumb} alt={product.title} />
       </div>
       <div className="cart-item-details">
-        <p>{props.product.title}</p>
+        <p>{product.title}</p>
         <p>
-          {props.product.availableSizes[0]} | {props.product.style}
+          {product.availableSizes[0]} | {product.style}
         </p>
-        <p>Quantity {props.product.quantity}</p>
+        <p>Quantity {product.quantity}</p>
       </div>
       <div>
         <span>x</span>
-        <p>{props.product.price}</p>
+        <p>{product.price}</p>
         <div>
           <button className="cart-item-btn">-</button>
           <button className="cart-item-btn">+</button>
